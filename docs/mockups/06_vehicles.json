@@ -1,0 +1,49 @@
+{
+  "id": 6,
+  "file": "vehicles",
+  "extends": "00_design_system.json",
+  "title": "Gestión de vehículos",
+  "route": "/vehicles",
+  "template": "vehicles.html",
+  "active_nav": "Vehículos",
+  "purpose": "Register and edit the vehicles of the university community (plate, type, owner and owner role) and search them by plate.",
+  "sections": [
+    {
+      "name": "Page header",
+      "description": "H1 'Vehículos registrados' with a search input 'Buscar por placa...' (magnifier icon) on the right and a navy 'Nuevo vehículo' button with a plus icon."
+    },
+    {
+      "name": "Vehicles table (left, 8 columns)",
+      "description": "White card table. Columns: Placa (monospace bold in a light tag), Tipo (car or moto icon with text), Propietario, Rol (colored pill: Estudiante blue, Docente purple, Directivo gold, Administrativo grey, Visitante teal), Acciones (pencil icon). 7 rows: ABC123 | Carro | Carlos Mendoza | Docente; DEF456 | Carro | María Fernanda Ruiz | Estudiante; GHI789 | Carro | Fray Julián Torres | Directivo; JKL012 | Carro | Andrés Camilo Pérez | Estudiante; MNO34E | Moto | Laura Gómez Rincón | Estudiante; PQR56F | Moto | Jorge Alberto Silva | Administrativo; ZZZ001 | Carro | Visitante - Proveedor | Visitante. Pagination at the bottom."
+    },
+    {
+      "name": "Form card (right, 4 columns)",
+      "description": "Sticky white card titled 'Registrar vehículo' with fields: 'Placa' (value 'KLM45H', uppercase monospace, helper 'Entre 5 y 7 letras o números'), select 'Tipo de vehículo' (Moto), 'Nombre del propietario' (value 'Sofía Ramírez'), select 'Tipo de propietario' (Docente), and a full-width navy button 'Guardar vehículo'."
+    },
+    {
+      "name": "Error alert",
+      "description": "Small red alert above the form: 'La placa debe tener entre 5 y 7 letras o números' shown to illustrate validation errors."
+    }
+  ],
+  "state_to_depict": "Form with a validation error alert and a populated table.",
+  "image_generation_prompt": "Design a high-fidelity, pixel-perfect desktop web UI mockup (16:10, 2880x1800, front-on, flat, minimal browser frame) of the page \"Gestión de vehículos\" for a university parking availability system called \"Parqueadero USTA\". All visible text must be in correct, readable Spanish, exactly as given below.\nStyle: modern Bootstrap-5 look with a premium finish - navy #1F2A44 navbar, gold #C9A227 accents, light background #F5F7FB, white cards with 16px radius and soft shadows, Inter font, generous white space, traffic-light status colors (green #198754, amber #F2A900, red #DC3545).\nShared elements: navbar (round gold 'P' badge + 'Parqueadero USTA', links: Disponibilidad, Registrar entrada, Vehículos adentro, Historial, Zonas, Vehículos; active link 'Vehículos' underlined in gold) and footer ('Universidad Santo Tomás - Seccional Tunja · Desarrollo Orientado a Servicios 2026-2').\nPage purpose: Register and edit the vehicles of the university community (plate, type, owner and owner role) and search them by plate.\nSection 1 - Page header: H1 'Vehículos registrados' with a search input 'Buscar por placa...' (magnifier icon) on the right and a navy 'Nuevo vehículo' button with a plus icon.\nSection 2 - Vehicles table (left, 8 columns): White card table. Columns: Placa (monospace bold in a light tag), Tipo (car or moto icon with text), Propietario, Rol (colored pill: Estudiante blue, Docente purple, Directivo gold, Administrativo grey, Visitante teal), Acciones (pencil icon). 7 rows: ABC123 | Carro | Carlos Mendoza | Docente; DEF456 | Carro | María Fernanda Ruiz | Estudiante; GHI789 | Carro | Fray Julián Torres | Directivo; JKL012 | Carro | Andrés Camilo Pérez | Estudiante; MNO34E | Moto | Laura Gómez Rincón | Estudiante; PQR56F | Moto | Jorge Alberto Silva | Administrativo; ZZZ001 | Carro | Visitante - Proveedor | Visitante. Pagination at the bottom.\nSection 3 - Form card (right, 4 columns): Sticky white card titled 'Registrar vehículo' with fields: 'Placa' (value 'KLM45H', uppercase monospace, helper 'Entre 5 y 7 letras o números'), select 'Tipo de vehículo' (Moto), 'Nombre del propietario' (value 'Sofía Ramírez'), select 'Tipo de propietario' (Docente), and a full-width navy button 'Guardar vehículo'.\nSection 4 - Error alert: Small red alert above the form: 'La placa debe tener entre 5 y 7 letras o números' shown to illustrate validation errors.\nState to depict: Form with a validation error alert and a populated table.\nAvoid: lorem ipsum, gibberish or misspelled text, real brand or university logos, watermark, blurry text, distorted UI, stock photos of people, cartoon style, dark mode, perspective tilt, cut-off elements, cluttered layout.",
+  "output": {
+    "aspect_ratio": "16:10",
+    "resolution": "2880x1800 (2x retina)",
+    "presentation": "flat, front-on UI screenshot inside a minimal browser window frame, readable Spanish text"
+  },
+  "negative_prompt": [
+    "lorem ipsum",
+    "gibberish or misspelled text",
+    "real brand or university logos",
+    "watermark",
+    "blurry text",
+    "distorted UI",
+    "stock photos of people",
+    "cartoon style",
+    "dark mode",
+    "perspective tilt",
+    "cut-off elements",
+    "cluttered layout"
+  ]
+}

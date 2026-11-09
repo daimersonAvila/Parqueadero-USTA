@@ -1,0 +1,86 @@
+{
+  "name": "Parqueadero USTA - Design System",
+  "applies_to": "all pages",
+  "framework_look": "Bootstrap 5 components (cards, tables, badges, alerts, navbar, forms) polished with a modern, premium finish",
+  "mood": [
+    "clean",
+    "trustworthy",
+    "institutional",
+    "modern",
+    "friendly",
+    "high contrast",
+    "plenty of white space"
+  ],
+  "colors": {
+    "primary_navy": "#1F2A44",
+    "accent_gold": "#C9A227",
+    "background": "#F5F7FB",
+    "surface": "#FFFFFF",
+    "text": "#1B2233",
+    "muted_text": "#6B7385",
+    "border": "#E1E5EE",
+    "status_available": "#198754",
+    "status_few_spaces": "#F2A900",
+    "status_full": "#DC3545",
+    "info": "#0D6EFD"
+  },
+  "typography": {
+    "family": "Inter (or Poppins) - sans-serif",
+    "heading_weight": 700,
+    "body_weight": 400,
+    "scale": "H1 34px, H2 24px, H3 18px, body 15px, caption 13px"
+  },
+  "shape": {
+    "card_radius": "16px",
+    "button_radius": "10px",
+    "badge_radius": "999px (pill)",
+    "shadow": "soft, large blur, very low opacity (0 8px 24px rgba(31,42,68,0.08))"
+  },
+  "layout": {
+    "canvas": "desktop 1440x900 viewport, content max-width 1200px centered, 12-column grid, 24px gutters"
+  },
+  "shared_components": {
+    "navbar": {
+      "style": "solid navy bar, white text, gold underline on the active item",
+      "brand": "round gold badge with a white letter P plus the text 'Parqueadero USTA' (generic placeholder logo, NOT a real university logo)",
+      "links": [
+        "Disponibilidad",
+        "Registrar entrada",
+        "Vehículos adentro",
+        "Historial",
+        "Zonas",
+        "Vehículos"
+      ]
+    },
+    "footer": {
+      "style": "light grey bar, small muted text",
+      "text": "Universidad Santo Tomás - Seccional Tunja · Desarrollo Orientado a Servicios 2026-2"
+    },
+    "alerts": "rounded, with a leading icon; success = green, error = red, warning = amber",
+    "status_badges": {
+      "DISPONIBLE": "green pill",
+      "POCOS CUPOS": "amber pill",
+      "LLENA": "red pill"
+    },
+    "icons": "simple line icons (Bootstrap Icons / Lucide style), 1.75px stroke"
+  },
+  "global_negative_prompt": [
+    "lorem ipsum",
+    "gibberish or misspelled text",
+    "real brand or university logos",
+    "watermark",
+    "blurry text",
+    "distorted UI",
+    "stock photos of people",
+    "cartoon style",
+    "dark mode",
+    "perspective tilt",
+    "cut-off elements",
+    "cluttered layout"
+  ],
+  "output": {
+    "aspect_ratio": "16:10",
+    "resolution": "2880x1800 (2x retina)",
+    "presentation": "flat, front-on UI screenshot inside a minimal browser window frame, readable Spanish text"
+  }
+}

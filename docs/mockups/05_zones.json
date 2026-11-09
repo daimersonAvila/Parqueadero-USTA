@@ -1,0 +1,49 @@
+{
+  "id": 5,
+  "file": "zones",
+  "extends": "00_design_system.json",
+  "title": "Gestión de zonas",
+  "route": "/zones",
+  "template": "zones.html",
+  "active_nav": "Zonas",
+  "purpose": "The administrator creates, edits, opens and closes parking zones and sets their capacity.",
+  "sections": [
+    {
+      "name": "Page header",
+      "description": "H1 'Zonas del parqueadero' and a navy button with a plus icon 'Nueva zona'."
+    },
+    {
+      "name": "Zones table (left, 8 columns)",
+      "description": "White card table. Columns: Nombre, Tipo (car or moto icon), Capacidad, Ocupados, Estado (iOS-style toggle switch with label 'Activa' or 'Cerrada'), Acciones (edit pencil icon button and a disabled trash icon). Rows: Zona A - Carros | Carro | 40 | 22 | Activa; Zona B - Carros | Carro | 30 | 19 | Activa; Zona Directivas | Carro | 10 | 9 | Activa; Zona Motos | Moto | 50 | 50 | Activa; Zona Visitantes | Carro | 15 | 0 | Cerrada (row slightly greyed out)."
+    },
+    {
+      "name": "Form card (right, 4 columns)",
+      "description": "Sticky white card titled 'Nueva zona' with fields: text input 'Nombre' (value 'Zona Posgrados'), select 'Tipo de vehículo' (Carro), number input 'Capacidad' (value 20) with helper text 'Debe ser mayor que 0', checkbox/switch 'Zona activa' ON, and a full-width navy button 'Guardar zona'."
+    },
+    {
+      "name": "Success alert",
+      "description": "Green alert at the top: 'Zona guardada correctamente'."
+    }
+  ],
+  "state_to_depict": "Create-zone form partially filled and one closed zone in the table.",
+  "image_generation_prompt": "Design a high-fidelity, pixel-perfect desktop web UI mockup (16:10, 2880x1800, front-on, flat, minimal browser frame) of the page \"Gestión de zonas\" for a university parking availability system called \"Parqueadero USTA\". All visible text must be in correct, readable Spanish, exactly as given below.\nStyle: modern Bootstrap-5 look with a premium finish - navy #1F2A44 navbar, gold #C9A227 accents, light background #F5F7FB, white cards with 16px radius and soft shadows, Inter font, generous white space, traffic-light status colors (green #198754, amber #F2A900, red #DC3545).\nShared elements: navbar (round gold 'P' badge + 'Parqueadero USTA', links: Disponibilidad, Registrar entrada, Vehículos adentro, Historial, Zonas, Vehículos; active link 'Zonas' underlined in gold) and footer ('Universidad Santo Tomás - Seccional Tunja · Desarrollo Orientado a Servicios 2026-2').\nPage purpose: The administrator creates, edits, opens and closes parking zones and sets their capacity.\nSection 1 - Page header: H1 'Zonas del parqueadero' and a navy button with a plus icon 'Nueva zona'.\nSection 2 - Zones table (left, 8 columns): White card table. Columns: Nombre, Tipo (car or moto icon), Capacidad, Ocupados, Estado (iOS-style toggle switch with label 'Activa' or 'Cerrada'), Acciones (edit pencil icon button and a disabled trash icon). Rows: Zona A - Carros | Carro | 40 | 22 | Activa; Zona B - Carros | Carro | 30 | 19 | Activa; Zona Directivas | Carro | 10 | 9 | Activa; Zona Motos | Moto | 50 | 50 | Activa; Zona Visitantes | Carro | 15 | 0 | Cerrada (row slightly greyed out).\nSection 3 - Form card (right, 4 columns): Sticky white card titled 'Nueva zona' with fields: text input 'Nombre' (value 'Zona Posgrados'), select 'Tipo de vehículo' (Carro), number input 'Capacidad' (value 20) with helper text 'Debe ser mayor que 0', checkbox/switch 'Zona activa' ON, and a full-width navy button 'Guardar zona'.\nSection 4 - Success alert: Green alert at the top: 'Zona guardada correctamente'.\nState to depict: Create-zone form partially filled and one closed zone in the table.\nAvoid: lorem ipsum, gibberish or misspelled text, real brand or university logos, watermark, blurry text, distorted UI, stock photos of people, cartoon style, dark mode, perspective tilt, cut-off elements, cluttered layout.",
+  "output": {
+    "aspect_ratio": "16:10",
+    "resolution": "2880x1800 (2x retina)",
+    "presentation": "flat, front-on UI screenshot inside a minimal browser window frame, readable Spanish text"
+  },
+  "negative_prompt": [
+    "lorem ipsum",
+    "gibberish or misspelled text",
+    "real brand or university logos",
+    "watermark",
+    "blurry text",
+    "distorted UI",
+    "stock photos of people",
+    "cartoon style",
+    "dark mode",
+    "perspective tilt",
+    "cut-off elements",
+    "cluttered layout"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": 2,
+  "file": "entry",
+  "extends": "00_design_system.json",
+  "title": "Registrar entrada",
+  "route": "/entry",
+  "template": "entry.html",
+  "active_nav": "Registrar entrada",
+  "purpose": "The security guard registers the entry of a vehicle at the gate, by plate and zone, and instantly sees whether the entry was accepted.",
+  "sections": [
+    {
+      "name": "Page header",
+      "description": "H1 'Registrar entrada' with breadcrumb 'Inicio / Registrar entrada' and a muted subtitle 'Ingresa la placa y selecciona la zona'."
+    },
+    {
+      "name": "Error alert",
+      "description": "At the top of the content, a rounded red alert with an exclamation-circle icon and a close button: 'La zona Zona Motos está llena, no hay cupos disponibles'."
+    },
+    {
+      "name": "Main form card (left, 7 columns)",
+      "description": "White card titled 'Datos del ingreso'. Large plate input labeled 'Placa' with value 'XYZ98D' and placeholder style monospace uppercase; select labeled 'Zona' showing 'Zona Motos (0 cupos libres)' with other options listed softly; a toggle switch 'Vehículo nuevo' turned ON that reveals three extra fields: select 'Tipo de vehículo' (Moto), text input 'Nombre del propietario' (value 'Laura Gómez Rincón'), select 'Tipo de propietario' (Estudiante). Bottom: a large navy primary button with a log-in icon 'Registrar entrada' and a ghost button 'Cancelar'."
+    },
+    {
+      "name": "Availability side panel (right, 5 columns)",
+      "description": "White card 'Cupos de la zona seleccionada' with a big red '0' libres, a full red progress bar, a red 'LLENA' pill, and below a compact list of the other zones with their free spaces: Zona A - Carros 18, Zona B - Carros 11, Zona Directivas 1, each with colored dots. A helper hint with a lightbulb icon: 'Sugerencia: dirige al conductor a la Zona A'."
+    }
+  ],
+  "state_to_depict": "Error state: entry rejected because the selected zone is full. (Alternate version to generate separately: same page with a green success alert 'Entrada registrada: ABC123 en Zona A - Carros a las 07:42' and an empty form.)",
+  "image_generation_prompt": "Design a high-fidelity, pixel-perfect desktop web UI mockup (16:10, 2880x1800, front-on, flat, minimal browser frame) of the page \"Registrar entrada\" for a university parking availability system called \"Parqueadero USTA\". All visible text must be in correct, readable Spanish, exactly as given below.\nStyle: modern Bootstrap-5 look with a premium finish - navy #1F2A44 navbar, gold #C9A227 accents, light background #F5F7FB, white cards with 16px radius and soft shadows, Inter font, generous white space, traffic-light status colors (green #198754, amber #F2A900, red #DC3545).\nShared elements: navbar (round gold 'P' badge + 'Parqueadero USTA', links: Disponibilidad, Registrar entrada, Vehículos adentro, Historial, Zonas, Vehículos; active link 'Registrar entrada' underlined in gold) and footer ('Universidad Santo Tomás - Seccional Tunja · Desarrollo Orientado a Servicios 2026-2').\nPage purpose: The security guard registers the entry of a vehicle at the gate, by plate and zone, and instantly sees whether the entry was accepted.\nSection 1 - Page header: H1 'Registrar entrada' with breadcrumb 'Inicio / Registrar entrada' and a muted subtitle 'Ingresa la placa y selecciona la zona'.\nSection 2 - Error alert: At the top of the content, a rounded red alert with an exclamation-circle icon and a close button: 'La zona Zona Motos está llena, no hay cupos disponibles'.\nSection 3 - Main form card (left, 7 columns): White card titled 'Datos del ingreso'. Large plate input labeled 'Placa' with value 'XYZ98D' and placeholder style monospace uppercase; select labeled 'Zona' showing 'Zona Motos (0 cupos libres)' with other options listed softly; a toggle switch 'Vehículo nuevo' turned ON that reveals three extra fields: select 'Tipo de vehículo' (Moto), text input 'Nombre del propietario' (value 'Laura Gómez Rincón'), select 'Tipo de propietario' (Estudiante). Bottom: a large navy primary button with a log-in icon 'Registrar entrada' and a ghost button 'Cancelar'.\nSection 4 - Availability side panel (right, 5 columns): White card 'Cupos de la zona seleccionada' with a big red '0' libres, a full red progress bar, a red 'LLENA' pill, and below a compact list of the other zones with their free spaces: Zona A - Carros 18, Zona B - Carros 11, Zona Directivas 1, each with colored dots. A helper hint with a lightbulb icon: 'Sugerencia: dirige al conductor a la Zona A'.\nState to depict: Error state: entry rejected because the selected zone is full. (Alternate version to generate separately: same page with a green success alert 'Entrada registrada: ABC123 en Zona A - Carros a las 07:42' and an empty form.)\nAvoid: lorem ipsum, gibberish or misspelled text, real brand or university logos, watermark, blurry text, distorted UI, stock photos of people, cartoon style, dark mode, perspective tilt, cut-off elements, cluttered layout.",
+  "output": {
+    "aspect_ratio": "16:10",
+    "resolution": "2880x1800 (2x retina)",
+    "presentation": "flat, front-on UI screenshot inside a minimal browser window frame, readable Spanish text"
+  },
+  "negative_prompt": [
+    "lorem ipsum",
+    "gibberish or misspelled text",
+    "real brand or university logos",
+    "watermark",
+    "blurry text",
+    "distorted UI",
+    "stock photos of people",
+    "cartoon style",
+    "dark mode",
+    "perspective tilt",
+    "cut-off elements",
+    "cluttered layout"
+  ]
+}

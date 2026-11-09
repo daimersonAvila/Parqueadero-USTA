@@ -1,0 +1,53 @@
+{
+  "id": 3,
+  "file": "inside",
+  "extends": "00_design_system.json",
+  "title": "Vehículos adentro",
+  "route": "/inside",
+  "template": "inside.html",
+  "active_nav": "Vehículos adentro",
+  "purpose": "Show which vehicles are inside the parking lot right now and let the guard register each exit with one click.",
+  "sections": [
+    {
+      "name": "Page header",
+      "description": "H1 'Vehículos adentro' with a navy pill counter '27 vehículos' and, aligned right, an outlined gold button with a PDF icon 'Descargar PDF'."
+    },
+    {
+      "name": "Success alert",
+      "description": "Green rounded alert with check-circle icon: 'Salida registrada: DEF456 permaneció 2 h 15 min'."
+    },
+    {
+      "name": "Search and filter bar",
+      "description": "White card with a search input with magnifier icon, placeholder 'Buscar por placa...' (value 'AB'), a zone select 'Todas las zonas', and a 'Buscar' button."
+    },
+    {
+      "name": "Data table",
+      "description": "Clean white card table, sticky header in light grey, zebra rows very subtle, 8 rows. Columns: Placa (monospace bold), Tipo (car or moto icon), Propietario, Rol (colored pill), Zona, Hora de entrada, Permanencia, Acción (small red outlined button with log-out icon 'Registrar salida'). Rows: ABC123 | Carro | Carlos Mendoza | Docente | Zona A - Carros | 07:05 | 3 h 12 min; DEF456 | Carro | María Fernanda Ruiz | Estudiante | Zona A - Carros | 08:30 | 1 h 47 min; GHI789 | Carro | Rector - Fray Julián Torres | Directivo | Zona Directivas | 06:50 | 3 h 27 min; JKL012 | Carro | Andrés Camilo Pérez | Estudiante | Zona B - Carros | 09:10 | 1 h 07 min; MNO34E | Moto | Laura Gómez Rincón | Estudiante | Zona Motos | 07:40 | 2 h 37 min; PQR56F | Moto | Jorge Alberto Silva | Administrativo | Zona Motos | 08:05 | 2 h 12 min; STU345 | Carro | Diana Patricia Vargas | Docente | Zona B - Carros | 07:55 | 2 h 22 min; VWX78G | Moto | Daniel Esteban Cruz | Estudiante | Zona Motos | 09:00 | 1 h 17 min. Role pills: Estudiante = blue, Docente = purple, Directivo = gold, Administrativo = grey."
+    },
+    {
+      "name": "Table footer",
+      "description": "Small muted text 'Mostrando 8 de 27 registros' and a simple pagination control with page 1 active in navy."
+    }
+  ],
+  "state_to_depict": "Normal state right after a successful exit, with the search field partially filled.",
+  "image_generation_prompt": "Design a high-fidelity, pixel-perfect desktop web UI mockup (16:10, 2880x1800, front-on, flat, minimal browser frame) of the page \"Vehículos adentro\" for a university parking availability system called \"Parqueadero USTA\". All visible text must be in correct, readable Spanish, exactly as given below.\nStyle: modern Bootstrap-5 look with a premium finish - navy #1F2A44 navbar, gold #C9A227 accents, light background #F5F7FB, white cards with 16px radius and soft shadows, Inter font, generous white space, traffic-light status colors (green #198754, amber #F2A900, red #DC3545).\nShared elements: navbar (round gold 'P' badge + 'Parqueadero USTA', links: Disponibilidad, Registrar entrada, Vehículos adentro, Historial, Zonas, Vehículos; active link 'Vehículos adentro' underlined in gold) and footer ('Universidad Santo Tomás - Seccional Tunja · Desarrollo Orientado a Servicios 2026-2').\nPage purpose: Show which vehicles are inside the parking lot right now and let the guard register each exit with one click.\nSection 1 - Page header: H1 'Vehículos adentro' with a navy pill counter '27 vehículos' and, aligned right, an outlined gold button with a PDF icon 'Descargar PDF'.\nSection 2 - Success alert: Green rounded alert with check-circle icon: 'Salida registrada: DEF456 permaneció 2 h 15 min'.\nSection 3 - Search and filter bar: White card with a search input with magnifier icon, placeholder 'Buscar por placa...' (value 'AB'), a zone select 'Todas las zonas', and a 'Buscar' button.\nSection 4 - Data table: Clean white card table, sticky header in light grey, zebra rows very subtle, 8 rows. Columns: Placa (monospace bold), Tipo (car or moto icon), Propietario, Rol (colored pill), Zona, Hora de entrada, Permanencia, Acción (small red outlined button with log-out icon 'Registrar salida'). Rows: ABC123 | Carro | Carlos Mendoza | Docente | Zona A - Carros | 07:05 | 3 h 12 min; DEF456 | Carro | María Fernanda Ruiz | Estudiante | Zona A - Carros | 08:30 | 1 h 47 min; GHI789 | Carro | Rector - Fray Julián Torres | Directivo | Zona Directivas | 06:50 | 3 h 27 min; JKL012 | Carro | Andrés Camilo Pérez | Estudiante | Zona B - Carros | 09:10 | 1 h 07 min; MNO34E | Moto | Laura Gómez Rincón | Estudiante | Zona Motos | 07:40 | 2 h 37 min; PQR56F | Moto | Jorge Alberto Silva | Administrativo | Zona Motos | 08:05 | 2 h 12 min; STU345 | Carro | Diana Patricia Vargas | Docente | Zona B - Carros | 07:55 | 2 h 22 min; VWX78G | Moto | Daniel Esteban Cruz | Estudiante | Zona Motos | 09:00 | 1 h 17 min. Role pills: Estudiante = blue, Docente = purple, Directivo = gold, Administrativo = grey.\nSection 5 - Table footer: Small muted text 'Mostrando 8 de 27 registros' and a simple pagination control with page 1 active in navy.\nState to depict: Normal state right after a successful exit, with the search field partially filled.\nAvoid: lorem ipsum, gibberish or misspelled text, real brand or university logos, watermark, blurry text, distorted UI, stock photos of people, cartoon style, dark mode, perspective tilt, cut-off elements, cluttered layout.",
+  "output": {
+    "aspect_ratio": "16:10",
+    "resolution": "2880x1800 (2x retina)",
+    "presentation": "flat, front-on UI screenshot inside a minimal browser window frame, readable Spanish text"
+  },
+  "negative_prompt": [
+    "lorem ipsum",
+    "gibberish or misspelled text",
+    "real brand or university logos",
+    "watermark",
+    "blurry text",
+    "distorted UI",
+    "stock photos of people",
+    "cartoon style",
+    "dark mode",
+    "perspective tilt",
+    "cut-off elements",
+    "cluttered layout"
+  ]
+}

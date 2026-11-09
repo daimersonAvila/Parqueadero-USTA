@@ -1,0 +1,57 @@
+{
+  "id": 4,
+  "file": "history",
+  "extends": "00_design_system.json",
+  "title": "Historial y reportes",
+  "route": "/history",
+  "template": "history.html",
+  "active_nav": "Historial",
+  "purpose": "Let the administrator review all past entries and exits by date range and zone, and download PDF reports.",
+  "sections": [
+    {
+      "name": "Page header",
+      "description": "H1 'Historial y reportes' with muted subtitle 'Consulta los registros por rango de fechas'."
+    },
+    {
+      "name": "Filter card",
+      "description": "White card with inline form: date input 'Desde' (03/11/2026), date input 'Hasta' (08/11/2026), select 'Zona' (Todas), a navy 'Filtrar' button with filter icon and a ghost 'Limpiar' button."
+    },
+    {
+      "name": "Summary chips",
+      "description": "Three small KPI cards in a row: '214 registros', '27 vehículos adentro', 'Permanencia promedio 3 h 05 min', each with a soft tinted icon circle."
+    },
+    {
+      "name": "Report buttons",
+      "description": "Right-aligned group of buttons with PDF icons: gold solid 'Descargar historial (PDF)', outlined navy 'Ocupación por zona (PDF)'."
+    },
+    {
+      "name": "History table",
+      "description": "White card table with 7 rows. Columns: Placa, Propietario, Zona, Entrada, Salida, Permanencia, Estado (pill: 'ADENTRO' green, 'FINALIZADO' grey). Rows: ABC123 | Carlos Mendoza | Zona A - Carros | 08/11 07:05 | - | 3 h 12 min | ADENTRO; XYZ98D | Laura Gómez Rincón | Zona Motos | 08/11 06:58 | 08/11 11:40 | 4 h 42 min | FINALIZADO; DEF456 | María Fernanda Ruiz | Zona A - Carros | 07/11 14:20 | 07/11 18:05 | 3 h 45 min | FINALIZADO; GHI789 | Fray Julián Torres | Zona Directivas | 07/11 06:50 | 07/11 17:30 | 10 h 40 min | FINALIZADO; JKL012 | Andrés Camilo Pérez | Zona B - Carros | 06/11 09:10 | 06/11 12:15 | 3 h 05 min | FINALIZADO; STU345 | Diana Patricia Vargas | Zona B - Carros | 06/11 07:55 | 06/11 16:00 | 8 h 05 min | FINALIZADO; PQR56F | Jorge Alberto Silva | Zona Motos | 05/11 08:05 | 05/11 13:20 | 5 h 15 min | FINALIZADO."
+    },
+    {
+      "name": "Pagination",
+      "description": "Pagination at the bottom right, page 1 of 31, navy active page."
+    }
+  ],
+  "state_to_depict": "Filters applied for the week 03/11/2026 to 08/11/2026.",
+  "image_generation_prompt": "Design a high-fidelity, pixel-perfect desktop web UI mockup (16:10, 2880x1800, front-on, flat, minimal browser frame) of the page \"Historial y reportes\" for a university parking availability system called \"Parqueadero USTA\". All visible text must be in correct, readable Spanish, exactly as given below.\nStyle: modern Bootstrap-5 look with a premium finish - navy #1F2A44 navbar, gold #C9A227 accents, light background #F5F7FB, white cards with 16px radius and soft shadows, Inter font, generous white space, traffic-light status colors (green #198754, amber #F2A900, red #DC3545).\nShared elements: navbar (round gold 'P' badge + 'Parqueadero USTA', links: Disponibilidad, Registrar entrada, Vehículos adentro, Historial, Zonas, Vehículos; active link 'Historial' underlined in gold) and footer ('Universidad Santo Tomás - Seccional Tunja · Desarrollo Orientado a Servicios 2026-2').\nPage purpose: Let the administrator review all past entries and exits by date range and zone, and download PDF reports.\nSection 1 - Page header: H1 'Historial y reportes' with muted subtitle 'Consulta los registros por rango de fechas'.\nSection 2 - Filter card: White card with inline form: date input 'Desde' (03/11/2026), date input 'Hasta' (08/11/2026), select 'Zona' (Todas), a navy 'Filtrar' button with filter icon and a ghost 'Limpiar' button.\nSection 3 - Summary chips: Three small KPI cards in a row: '214 registros', '27 vehículos adentro', 'Permanencia promedio 3 h 05 min', each with a soft tinted icon circle.\nSection 4 - Report buttons: Right-aligned group of buttons with PDF icons: gold solid 'Descargar historial (PDF)', outlined navy 'Ocupación por zona (PDF)'.\nSection 5 - History table: White card table with 7 rows. Columns: Placa, Propietario, Zona, Entrada, Salida, Permanencia, Estado (pill: 'ADENTRO' green, 'FINALIZADO' grey). Rows: ABC123 | Carlos Mendoza | Zona A - Carros | 08/11 07:05 | - | 3 h 12 min | ADENTRO; XYZ98D | Laura Gómez Rincón | Zona Motos | 08/11 06:58 | 08/11 11:40 | 4 h 42 min | FINALIZADO; DEF456 | María Fernanda Ruiz | Zona A - Carros | 07/11 14:20 | 07/11 18:05 | 3 h 45 min | FINALIZADO; GHI789 | Fray Julián Torres | Zona Directivas | 07/11 06:50 | 07/11 17:30 | 10 h 40 min | FINALIZADO; JKL012 | Andrés Camilo Pérez | Zona B - Carros | 06/11 09:10 | 06/11 12:15 | 3 h 05 min | FINALIZADO; STU345 | Diana Patricia Vargas | Zona B - Carros | 06/11 07:55 | 06/11 16:00 | 8 h 05 min | FINALIZADO; PQR56F | Jorge Alberto Silva | Zona Motos | 05/11 08:05 | 05/11 13:20 | 5 h 15 min | FINALIZADO.\nSection 6 - Pagination: Pagination at the bottom right, page 1 of 31, navy active page.\nState to depict: Filters applied for the week 03/11/2026 to 08/11/2026.\nAvoid: lorem ipsum, gibberish or misspelled text, real brand or university logos, watermark, blurry text, distorted UI, stock photos of people, cartoon style, dark mode, perspective tilt, cut-off elements, cluttered layout.",
+  "output": {
+    "aspect_ratio": "16:10",
+    "resolution": "2880x1800 (2x retina)",
+    "presentation": "flat, front-on UI screenshot inside a minimal browser window frame, readable Spanish text"
+  },
+  "negative_prompt": [
+    "lorem ipsum",
+    "gibberish or misspelled text",
+    "real brand or university logos",
+    "watermark",
+    "blurry text",
+    "distorted UI",
+    "stock photos of people",
+    "cartoon style",
+    "dark mode",
+    "perspective tilt",
+    "cut-off elements",
+    "cluttered layout"
+  ]
+}

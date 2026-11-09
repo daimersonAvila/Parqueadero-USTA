@@ -1,0 +1,54 @@
+{
+  "id": 1,
+  "file": "index",
+  "extends": "00_design_system.json",
+  "title": "Disponibilidad del parqueadero (página principal)",
+  "route": "/",
+  "template": "index.html",
+  "active_nav": "Disponibilidad",
+  "purpose": "Let any student, teacher or director see at a glance how many free parking spaces there are in each zone before leaving home.",
+  "sections": [
+    {
+      "name": "Hero / header",
+      "description": "Navy-to-dark-blue gradient band with the H1 'Disponibilidad del parqueadero' in white, subtitle 'Consulta los cupos libres antes de llegar a la universidad', and on the right a small chip with a pulsing green dot 'Actualizado hace 12 segundos'."
+    },
+    {
+      "name": "Big total KPI",
+      "description": "A large white floating card overlapping the hero: huge number '30' in navy, label 'cupos libres en total', secondary text 'de 130 cupos en 4 zonas', and a gold button with a download icon 'Descargar PDF de ocupación'."
+    },
+    {
+      "name": "Zone cards grid",
+      "description": "Four equal cards in a 4-column row (2x2 on narrow). Each card: zone name, vehicle icon (car or motorcycle), huge free-spaces number, text 'cupos libres', horizontal occupancy progress bar with percentage, small line 'X de Y ocupados', and a status pill. Data: (1) 'Zona A - Carros', car icon, 18 libres, 22 de 40 ocupados, bar 55% green, pill 'DISPONIBLE'. (2) 'Zona B - Carros', car icon, 11 libres, 19 de 30 ocupados, bar 63% green, pill 'DISPONIBLE'. (3) 'Zona Directivas', car icon, 1 libre, 9 de 10 ocupados, bar 90% amber, pill 'POCOS CUPOS'. (4) 'Zona Motos', motorcycle icon, 0 libres, 50 de 50 ocupados, bar 100% red, pill 'LLENA'. Card top border or accent matches the status color."
+    },
+    {
+      "name": "Legend row",
+      "description": "Small legend below the cards with three colored dots: 'Disponible', 'Pocos cupos (10% o menos)', 'Llena'."
+    }
+  ],
+  "realistic_data": {
+    "zones": 4,
+    "total_free": 30,
+    "total_capacity": 130
+  },
+  "state_to_depict": "Normal daytime state with a mix of green, amber and red cards.",
+  "image_generation_prompt": "Design a high-fidelity, pixel-perfect desktop web UI mockup (16:10, 2880x1800, front-on, flat, minimal browser frame) of the page \"Disponibilidad del parqueadero (página principal)\" for a university parking availability system called \"Parqueadero USTA\". All visible text must be in correct, readable Spanish, exactly as given below.\nStyle: modern Bootstrap-5 look with a premium finish - navy #1F2A44 navbar, gold #C9A227 accents, light background #F5F7FB, white cards with 16px radius and soft shadows, Inter font, generous white space, traffic-light status colors (green #198754, amber #F2A900, red #DC3545).\nShared elements: navbar (round gold 'P' badge + 'Parqueadero USTA', links: Disponibilidad, Registrar entrada, Vehículos adentro, Historial, Zonas, Vehículos; active link 'Disponibilidad' underlined in gold) and footer ('Universidad Santo Tomás - Seccional Tunja · Desarrollo Orientado a Servicios 2026-2').\nPage purpose: Let any student, teacher or director see at a glance how many free parking spaces there are in each zone before leaving home.\nSection 1 - Hero / header: Navy-to-dark-blue gradient band with the H1 'Disponibilidad del parqueadero' in white, subtitle 'Consulta los cupos libres antes de llegar a la universidad', and on the right a small chip with a pulsing green dot 'Actualizado hace 12 segundos'.\nSection 2 - Big total KPI: A large white floating card overlapping the hero: huge number '30' in navy, label 'cupos libres en total', secondary text 'de 130 cupos en 4 zonas', and a gold button with a download icon 'Descargar PDF de ocupación'.\nSection 3 - Zone cards grid: Four equal cards in a 4-column row (2x2 on narrow). Each card: zone name, vehicle icon (car or motorcycle), huge free-spaces number, text 'cupos libres', horizontal occupancy progress bar with percentage, small line 'X de Y ocupados', and a status pill. Data: (1) 'Zona A - Carros', car icon, 18 libres, 22 de 40 ocupados, bar 55% green, pill 'DISPONIBLE'. (2) 'Zona B - Carros', car icon, 11 libres, 19 de 30 ocupados, bar 63% green, pill 'DISPONIBLE'. (3) 'Zona Directivas', car icon, 1 libre, 9 de 10 ocupados, bar 90% amber, pill 'POCOS CUPOS'. (4) 'Zona Motos', motorcycle icon, 0 libres, 50 de 50 ocupados, bar 100% red, pill 'LLENA'. Card top border or accent matches the status color.\nSection 4 - Legend row: Small legend below the cards with three colored dots: 'Disponible', 'Pocos cupos (10% o menos)', 'Llena'.\nState to depict: Normal daytime state with a mix of green, amber and red cards.\nAvoid: lorem ipsum, gibberish or misspelled text, real brand or university logos, watermark, blurry text, distorted UI, stock photos of people, cartoon style, dark mode, perspective tilt, cut-off elements, cluttered layout.",
+  "output": {
+    "aspect_ratio": "16:10",
+    "resolution": "2880x1800 (2x retina)",
+    "presentation": "flat, front-on UI screenshot inside a minimal browser window frame, readable Spanish text"
+  },
+  "negative_prompt": [
+    "lorem ipsum",
+    "gibberish or misspelled text",
+    "real brand or university logos",
+    "watermark",
+    "blurry text",
+    "distorted UI",
+    "stock photos of people",
+    "cartoon style",
+    "dark mode",
+    "perspective tilt",
+    "cut-off elements",
+    "cluttered layout"
+  ]
+}
