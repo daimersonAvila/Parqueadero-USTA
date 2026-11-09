@@ -1,0 +1,74 @@
+{#include base active='index'}
+{#title}Disponibilidad{/title}
+{#head}
+    <!-- La disponibilidad se actualiza sola cada 30 segundos -->
+    <meta http-equiv="refresh" content="30">
+{/head}
+
+<section class="hero">
+    <div class="container app-container">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+            <div>
+                <h1>Disponibilidad del parqueadero</h1>
+                <p class="hero-subtitle">Consulta los cupos libres antes de llegar a la universidad</p>
+            </div>
+            <span class="live-chip" data-updated-at="{page.updatedAtMillis}">
+                <span class="pulse-dot"></span>
+                <span class="live-text">Actualizado a las {page.updatedAt}</span>
+            </span>
+        </div>
+    </div>
+</section>
+
+<div class="container app-container">
+    <section class="kpi-card app-card">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-4">
+                <div class="kpi-number">{page.totalFree}</div>
+                <div>
+                    <div class="kpi-label">cupos libres en total</div>
+                    <div class="text-muted-app">de {page.totalCapacity} cupos en {page.zoneCount} zonas</div>
+                </div>
+            </div>
+            <a class="btn btn-gold" href="/reports/occupancy">
+                <i class="bi bi-download me-1"></i> Descargar PDF de ocupación
+            </a>
+        </div>
+    </section>
+
+    <section class="row g-4 mt-1">
+        {#for z in page.zones}
+        <div class="col-12 col-sm-6 col-xl-3">
+            <article class="app-card zone-card status-{z.statusClass}">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h2 class="zone-name">{z.name}</h2>
+                    <i class="bi {z.vehicleIcon} zone-icon" title="{z.vehicleTypeLabel}"></i>
+                </div>
+                <div class="zone-free">{z.freeSpaces}</div>
+                <div class="text-muted-app">{z.freeLabel}</div>
+                <div class="progress app-progress mt-3" role="progressbar" aria-valuenow="{z.occupancyPercent}" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bar-{z.statusClass}" style="width: {z.occupancyPercent}%"></div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <small class="text-muted-app">{z.occupied} de {z.capacity} ocupados ({z.occupancyPercent}%)</small>
+                    <span class="status-pill pill-{z.statusClass}">{z.statusLabel}</span>
+                </div>
+            </article>
+        </div>
+        {#else}
+        <div class="col-12">
+            <div class="app-card empty-state">
+                <i class="bi bi-p-circle fs-1"></i>
+                <p class="mb-0">Todavía no hay zonas registradas en el parqueadero.</p>
+            </div>
+        </div>
+        {/for}
+    </section>
+
+    <section class="legend d-flex flex-wrap gap-4 mt-4">
+        <span><span class="dot dot-available"></span> Disponible</span>
+        <span><span class="dot dot-few"></span> Pocos cupos (10% o menos)</span>
+        <span><span class="dot dot-full"></span> Llena</span>
+    </section>
+</div>
+{/include}

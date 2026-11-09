@@ -1,0 +1,111 @@
+{#include base active='inside'}
+{#title}Vehículos adentro{/title}
+
+<div class="container app-container page-container">
+    <header class="page-header d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3">
+            <h1 class="mb-0">Vehículos adentro</h1>
+            <span class="count-pill">{page.totalInside} {page.totalLabel}</span>
+        </div>
+        <a class="btn btn-outline-gold" href="/reports/inside">
+            <i class="bi bi-file-earmark-pdf me-1"></i> Descargar PDF
+        </a>
+    </header>
+
+    {#if page.alert}
+        {#include partials/alert.html alert=page.alert /}
+    {/if}
+
+    <form class="app-card filter-card" method="get" action="/inside">
+        <div class="row g-2 align-items-center">
+            <div class="col-12 col-md-5">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control plate-input" name="plate" value="{page.filterPlate}"
+                           placeholder="Buscar por placa..." autocomplete="off">
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <select class="form-select" name="zoneId" aria-label="Zona">
+                    <option value="">Todas las zonas</option>
+                    {#for z in page.zones}
+                    <option value="{z.id}" {#if z.id == page.filterZoneId}selected{/if}>{z.name}</option>
+                    {/for}
+                </select>
+            </div>
+            <div class="col-6 col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-navy flex-fill">Buscar</button>
+                <a href="/inside" class="btn btn-ghost" title="Quitar filtros"><i class="bi bi-x-lg"></i></a>
+            </div>
+        </div>
+    </form>
+
+    <div class="app-card table-card">
+        <div class="table-responsive">
+            <table class="table app-table align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Placa</th>
+                    <th>Tipo</th>
+                    <th>Propietario</th>
+                    <th>Rol</th>
+                    <th>Zona</th>
+                    <th>Hora de entrada</th>
+                    <th>Permanencia</th>
+                    <th class="text-end">Acción</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#for r in page.rows}
+                <tr>
+                    <td class="plate-cell">{r.plate}</td>
+                    <td><i class="bi {r.vehicleIcon} me-1"></i>{r.vehicleTypeLabel}</td>
+                    <td>{r.ownerName}</td>
+                    <td><span class="role-pill {r.ownerTypeClass}">{r.ownerTypeLabel}</span></td>
+                    <td>{r.zoneName}</td>
+                    <td>{r.entryTime}</td>
+                    <td>{r.stay}</td>
+                    <td class="text-end">
+                        <form method="post" action="/inside/{r.recordId}/exit" class="d-inline">
+                            <input type="hidden" name="plate" value="{page.filterPlate}">
+                            <input type="hidden" name="zoneId" value="{page.filterZoneId ?: ''}">
+                            <input type="hidden" name="page" value="{page.currentPage}">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-box-arrow-right me-1"></i> Registrar salida
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {#else}
+                <tr>
+                    <td colspan="8" class="empty-state">
+                        <i class="bi bi-inbox fs-2 d-block mb-1"></i>
+                        No hay vehículos que coincidan con la búsqueda.
+                    </td>
+                </tr>
+                {/for}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-footer d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <small class="text-muted-app">Mostrando {page.shownCount} de {page.filteredCount} registros</small>
+            {#if page.totalPages > 1}
+            <nav aria-label="Paginación">
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item{#if !page.previousHref} disabled{/if}">
+                        <a class="page-link" href="{page.previousHref ?: '#'}" aria-label="Anterior">&laquo;</a>
+                    </li>
+                    {#for p in page.pages}
+                    <li class="page-item{#if p.current} active{/if}"><a class="page-link" href="{p.href}">{p.number}</a></li>
+                    {/for}
+                    <li class="page-item{#if !page.nextHref} disabled{/if}">
+                        <a class="page-link" href="{page.nextHref ?: '#'}" aria-label="Siguiente">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+            {/if}
+        </div>
+    </div>
+</div>
+{/include}
