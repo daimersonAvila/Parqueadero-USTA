@@ -1,0 +1,129 @@
+{#include base active='entry'}
+{#title}Registrar entrada{/title}
+
+<div class="container app-container page-container">
+    <header class="page-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Registrar entrada</li>
+            </ol>
+        </nav>
+        <h1>Registrar entrada</h1>
+        <p class="text-muted-app">Ingresa la placa y selecciona la zona</p>
+    </header>
+
+    {#if page.alert}
+        {#include partials/alert.html alert=page.alert /}
+    {/if}
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-7">
+            <form class="app-card form-card" method="post" action="/entry" id="entryForm">
+                <h2 class="card-title-app">Datos del ingreso</h2>
+
+                <div class="mb-3">
+                    <label for="plate" class="form-label">Placa</label>
+                    <input type="text" class="form-control form-control-lg plate-input" id="plate" name="plate"
+                           value="{page.form.plate}" maxlength="10" placeholder="ABC123" autocomplete="off" required autofocus>
+                </div>
+
+                <div class="mb-3">
+                    <label for="zoneId" class="form-label">Zona</label>
+                    <select class="form-select" id="zoneId" name="zoneId" required>
+                        <option value="">Selecciona una zona</option>
+                        {#for z in page.zones}
+                        <option value="{z.id}"
+                                data-name="{z.name}"
+                                data-type="{z.vehicleTypeCode}"
+                                data-free="{z.freeSpaces}"
+                                data-free-label="{z.freeLabel}"
+                                data-percent="{z.occupancyPercent}"
+                                data-status="{z.statusClass}"
+                                data-status-label="{z.statusLabel}"
+                                {#if z.id == page.form.zoneId}selected{/if}>
+                            {z.name} ({z.freeSpaces} {z.freeLabel})
+                        </option>
+                        {/for}
+                    </select>
+                </div>
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="newVehicle" name="newVehicle"
+                           {#if page.form.newVehicle}checked{/if}>
+                    <label class="form-check-label" for="newVehicle">Vehículo nuevo</label>
+                    <div class="form-text">Actívalo si la placa todavía no está registrada.</div>
+                </div>
+
+                <div id="newVehicleFields" class="new-vehicle-fields"{#if !page.form.newVehicle} hidden{/if}>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="vehicleType" class="form-label">Tipo de vehículo</label>
+                            <select class="form-select" id="vehicleType" name="vehicleType">
+                                <option value="">Selecciona...</option>
+                                {#for o in page.vehicleTypes}
+                                <option value="{o.value}" {#if o.value == page.form.vehicleType}selected{/if}>{o.label}</option>
+                                {/for}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ownerType" class="form-label">Tipo de propietario</label>
+                            <select class="form-select" id="ownerType" name="ownerType">
+                                <option value="">Selecciona...</option>
+                                {#for o in page.ownerTypes}
+                                <option value="{o.value}" {#if o.value == page.form.ownerType}selected{/if}>{o.label}</option>
+                                {/for}
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="ownerName" class="form-label">Nombre del propietario</label>
+                            <input type="text" class="form-control" id="ownerName" name="ownerName"
+                                   value="{page.form.ownerName}" maxlength="100" placeholder="Nombre completo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-navy btn-lg">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Registrar entrada
+                    </button>
+                    <a href="/" class="btn btn-ghost btn-lg">Cancelar</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-12 col-lg-5">
+            <aside class="app-card side-panel" id="zonePanel">
+                <h2 class="card-title-app">Cupos de la zona seleccionada</h2>
+
+                <p class="text-muted-app mb-0" id="panelEmpty">Selecciona una zona para ver sus cupos.</p>
+
+                <div id="panelContent" hidden>
+                    <div class="d-flex align-items-end justify-content-between">
+                        <div>
+                            <span class="panel-free" id="panelFree">0</span>
+                            <span class="text-muted-app" id="panelFreeLabel">cupos libres</span>
+                        </div>
+                        <span class="status-pill" id="panelPill"></span>
+                    </div>
+                    <div class="progress app-progress my-3" role="progressbar">
+                        <div class="progress-bar" id="panelBar" style="width: 0%"></div>
+                    </div>
+
+                    <h3 class="side-subtitle">Otras zonas</h3>
+                    <ul class="other-zones" id="otherZones"></ul>
+
+                    <div class="hint" id="panelHint" hidden>
+                        <i class="bi bi-lightbulb"></i>
+                        <span id="panelHintText"></span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+{#scripts}
+<script src="/js/entry.js"></script>
+{/scripts}
+{/include}

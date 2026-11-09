@@ -1,0 +1,266 @@
+/* Parqueadero USTA - estilos compartidos (ver docs/mockups/00_design_system.json) */
+
+:root {
+    --navy: #1F2A44;
+    --navy-dark: #141C30;
+    --gold: #C9A227;
+    --bg: #F5F7FB;
+    --surface: #FFFFFF;
+    --text: #1B2233;
+    --muted: #6B7385;
+    --border: #E1E5EE;
+    --available: #198754;
+    --few: #F2A900;
+    --full: #DC3545;
+    --card-shadow: 0 8px 24px rgba(31, 42, 68, 0.08);
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main { flex: 1; }
+
+h1, h2, h3 { font-weight: 700; }
+h1 { font-size: 34px; }
+h2 { font-size: 24px; }
+h3 { font-size: 18px; }
+
+.app-container { max-width: 1200px; }
+.page-container { padding-top: 2rem; padding-bottom: 3rem; }
+.text-muted-app { color: var(--muted); }
+
+/* ---------- Navbar y footer ---------- */
+.app-navbar { background: var(--navy); padding: 0.75rem 0; }
+.app-navbar .navbar-brand { color: #fff; font-weight: 700; }
+.app-navbar .navbar-toggler { border-color: rgba(255, 255, 255, 0.4); }
+.app-navbar .navbar-toggler-icon { filter: invert(1); }
+.app-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    padding: 0.5rem 0.9rem;
+    border-bottom: 3px solid transparent;
+}
+.app-navbar .nav-link:hover { color: #fff; }
+.app-navbar .nav-link.active { color: #fff; border-bottom-color: var(--gold); }
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #fff;
+    font-weight: 700;
+}
+
+.app-footer {
+    background: #E9ECF3;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+/* ---------- Tarjetas y botones ---------- */
+.app-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+}
+
+.card-title-app { font-size: 18px; margin-bottom: 1.25rem; }
+
+.btn { border-radius: 10px; font-weight: 600; }
+.btn-navy { background: var(--navy); border-color: var(--navy); color: #fff; }
+.btn-navy:hover { background: var(--navy-dark); border-color: var(--navy-dark); color: #fff; }
+.btn-gold { background: var(--gold); border-color: var(--gold); color: #fff; }
+.btn-gold:hover { background: #B08F20; border-color: #B08F20; color: #fff; }
+.btn-outline-gold { border: 1px solid var(--gold); color: #8A6E10; background: transparent; }
+.btn-outline-gold:hover { background: var(--gold); color: #fff; }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+.btn-ghost:hover { background: #EEF1F7; color: var(--text); }
+
+.form-control, .form-select { border-radius: 10px; border-color: var(--border); }
+.form-control:focus, .form-select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.2rem rgba(201, 162, 39, 0.2);
+}
+
+.plate-input {
+    font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.app-alert { border-radius: 12px; border: 0; }
+
+/* ---------- Página principal ---------- */
+.hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #2C3E6B 100%);
+    color: #fff;
+    padding: 2.5rem 0 5.5rem;
+}
+.hero h1 { color: #fff; margin-bottom: 0.25rem; }
+.hero-subtitle { color: rgba(255, 255, 255, 0.8); margin-bottom: 0; }
+
+.live-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: 13px;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3DDC84;
+    animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(61, 220, 132, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); }
+}
+
+.kpi-card { margin-top: -3.5rem; padding: 1.75rem 2rem; }
+.kpi-number { font-size: 72px; font-weight: 700; line-height: 1; color: var(--navy); }
+.kpi-label { font-size: 22px; font-weight: 600; }
+
+.zone-card { border-top: 6px solid var(--border); height: 100%; }
+.zone-card.status-available { border-top-color: var(--available); }
+.zone-card.status-few { border-top-color: var(--few); }
+.zone-card.status-full { border-top-color: var(--full); }
+.zone-name { font-size: 18px; margin: 0; }
+.zone-icon { font-size: 1.5rem; color: var(--muted); }
+.zone-free { font-size: 56px; font-weight: 700; line-height: 1.1; margin-top: 0.75rem; }
+
+.app-progress { height: 10px; border-radius: 999px; background: #E9ECF3; }
+.bar-available { background: var(--available); }
+.bar-few { background: var(--few); }
+.bar-full { background: var(--full); }
+
+.status-pill {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.2rem 0.75rem;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #fff;
+}
+.pill-available { background: var(--available); }
+.pill-few { background: var(--few); color: #3B2D00; }
+.pill-full { background: var(--full); }
+
+.text-status-available { color: var(--available); }
+.text-status-few { color: var(--few); }
+.text-status-full { color: var(--full); }
+
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+.dot-available { background: var(--available); }
+.dot-few { background: var(--few); }
+.dot-full { background: var(--full); }
+
+.legend { color: var(--muted); font-size: 13px; padding-bottom: 3rem; }
+
+.empty-state { text-align: center; color: var(--muted); padding: 2rem; }
+
+/* ---------- Encabezado de página ---------- */
+.page-header { margin-bottom: 1.5rem; }
+.page-header h1 { margin-bottom: 0.25rem; }
+.breadcrumb { font-size: 13px; }
+.breadcrumb a { color: var(--muted); text-decoration: none; }
+
+/* ---------- Registrar entrada ---------- */
+.form-card .form-label { font-weight: 600; }
+.new-vehicle-fields {
+    background: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+}
+.form-switch .form-check-input:checked { background-color: var(--navy); border-color: var(--navy); }
+
+.side-panel { position: sticky; top: 1rem; }
+.panel-free { font-size: 64px; font-weight: 700; line-height: 1; }
+.side-subtitle { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.other-zones { list-style: none; padding: 0; margin: 0 0 1rem; }
+.other-zones li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.hint {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    background: #FFF8E1;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    color: #6B5200;
+}
+.hint[hidden] { display: none; }
+
+/* ---------- Vehículos adentro ---------- */
+.count-pill {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.25rem 0.9rem;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filter-card { padding: 1rem; margin-bottom: 1.5rem; }
+
+.table-card { padding: 0; overflow: hidden; }
+.app-table thead th {
+    background: #EEF1F7;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 1rem;
+}
+.app-table tbody td { padding: 0.85rem 1rem; }
+.app-table tbody tr:nth-child(even) { background: #FAFBFD; }
+.plate-cell { font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-weight: 700; }
+.table-footer { padding: 0.85rem 1rem; border-top: 1px solid var(--border); }
+
+.role-pill {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.2rem 0.7rem;
+    font-size: 12px;
+    font-weight: 600;
+}
+.role-student { background: #DCEBFF; color: #0A4FB3; }
+.role-teacher { background: #EADFFB; color: #5B2BA8; }
+.role-directive { background: #F6EBC3; color: #7A5F08; }
+.role-staff { background: #E4E7EE; color: #4A5163; }
+.role-visitor { background: #D8F0EC; color: #0B6B5E; }
+
+.pagination .page-link { color: var(--navy); }
+.pagination .page-item.active .page-link { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+@media (max-width: 575.98px) {
+    h1 { font-size: 26px; }
+    .kpi-number { font-size: 56px; }
+}
