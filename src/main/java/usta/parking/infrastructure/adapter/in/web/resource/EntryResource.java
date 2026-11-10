@@ -8,6 +8,8 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriBuilder;
 import org.jboss.resteasy.reactive.RestForm;
@@ -28,6 +30,7 @@ import java.util.List;
 
 // Pantalla "Registrar entrada" (RF-04 a RF-08)
 @Path("/entry")
+@Tag(name = "Entradas", description = "Registro de la entrada de vehículos")
 public class EntryResource {
 
     private final CheckAvailabilityUseCase checkAvailability;
@@ -54,6 +57,7 @@ public class EntryResource {
     // "entered" llega después de registrar una entrada: con la placa se arma el mensaje de éxito
     @GET
     @Produces(MediaType.TEXT_HTML)
+    @Operation(summary = "Mostrar el formulario de registro de entrada")
     public TemplateInstance show(@RestQuery String entered) {
         return render(entryMapper.emptyForm(), successAlert(entered));
     }
@@ -61,6 +65,7 @@ public class EntryResource {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
+    @Operation(summary = "Registrar la entrada de un vehículo")
     public Response register(@RestForm String plate,
                              @RestForm String zoneId,
                              @RestForm String newVehicle,

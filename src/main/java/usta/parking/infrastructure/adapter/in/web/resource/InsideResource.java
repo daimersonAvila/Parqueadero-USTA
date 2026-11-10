@@ -8,6 +8,8 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriBuilder;
 import org.jboss.resteasy.reactive.RestForm;
@@ -31,6 +33,7 @@ import java.util.List;
 
 // Pantalla "Vehículos adentro": lista, búsqueda y salida con un clic (RF-09 a RF-12)
 @Path("/inside")
+@Tag(name = "Vehículos adentro", description = "Consulta de los vehículos que están adentro y registro de su salida")
 public class InsideResource {
 
     // Filas por página de la tabla
@@ -60,6 +63,7 @@ public class InsideResource {
     // plate y zoneId son filtros; "exited" y "minutes" llegan después de registrar una salida
     @GET
     @Produces(MediaType.TEXT_HTML)
+    @Operation(summary = "Mostrar los vehículos que están adentro")
     public TemplateInstance show(@RestQuery String plate,
                                  @RestQuery String zoneId,
                                  @RestQuery String page,
@@ -77,6 +81,7 @@ public class InsideResource {
     @Path("/{id}/exit")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
+    @Operation(summary = "Registrar la salida de un vehículo")
     public Response exit(@RestPath Long id,
                         @RestForm String plate,
                         @RestForm String zoneId,

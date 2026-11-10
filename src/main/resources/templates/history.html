@@ -1,0 +1,157 @@
+{#include base active='history'}
+{#title}Historial y reportes{/title}
+
+{#head}
+<style>
+    /* Estado del registro: verde si sigue adentro, gris si ya salió */
+    .rec-pill { display: inline-block; border-radius: 999px; padding: 0.2rem 0.7rem; font-size: 12px; font-weight: 600; }
+    .rec-active { background: #D9F2E3; color: #146C3B; }
+    .rec-finished { background: #E4E7EE; color: #4A5163; }
+
+    /* Tarjetas de resumen */
+    .summary-chip { display: flex; align-items: center; gap: 0.85rem; padding: 1rem 1.25rem; height: 100%; }
+    .summary-icon { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+                    font-size: 1.25rem; background: #E8EDF7; color: var(--navy); flex-shrink: 0; }
+    .summary-value { font-size: 24px; font-weight: 700; line-height: 1.1; }
+    .summary-label { color: var(--muted); font-size: 13px; }
+
+    .btn-outline-navy { border: 1px solid var(--navy); color: var(--navy); background: transparent; }
+    .btn-outline-navy:hover { background: var(--navy); color: #fff; }
+</style>
+{/head}
+
+<div class="container app-container page-container">
+    <header class="page-header">
+        <h1>Historial y reportes</h1>
+        <p class="text-muted-app">Consulta los registros por rango de fechas</p>
+    </header>
+
+    {#if page.alert}
+        {#include partials/alert.html alert=page.alert /}
+    {/if}
+
+    <form class="app-card filter-card" method="get" action="/history">
+        <div class="row g-2 align-items-end">
+            <div class="col-6 col-md-3">
+                <label for="from" class="form-label mb-1">Desde</label>
+                <input type="date" class="form-control" id="from" name="from" value="{page.fromDate}" required>
+            </div>
+            <div class="col-6 col-md-3">
+                <label for="to" class="form-label mb-1">Hasta</label>
+                <input type="date" class="form-control" id="to" name="to" value="{page.toDate}" required>
+            </div>
+            <div class="col-12 col-md-3">
+                <label for="zoneId" class="form-label mb-1">Zona</label>
+                <select class="form-select" id="zoneId" name="zoneId">
+                    <option value="">Todas</option>
+                    {#for z in page.zones}
+                    <option value="{z.id}" {#if z.id == page.filterZoneId}selected{/if}>{z.name}</option>
+                    {/for}
+                </select>
+            </div>
+            <div class="col-12 col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-navy flex-fill">
+                    <i class="bi bi-funnel me-1"></i> Filtrar
+                </button>
+                <a href="/history" class="btn btn-ghost">Limpiar</a>
+            </div>
+        </div>
+    </form>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-md-4">
+            <div class="app-card summary-chip">
+                <span class="summary-icon"><i class="bi bi-journal-text"></i></span>
+                <div>
+                    <div class="summary-value">{page.totalRecords}</div>
+                    <div class="summary-label">{page.totalLabel}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="app-card summary-chip">
+                <span class="summary-icon"><i class="bi bi-car-front"></i></span>
+                <div>
+                    <div class="summary-value">{page.insideCount}</div>
+                    <div class="summary-label">vehículos adentro</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="app-card summary-chip">
+                <span class="summary-icon"><i class="bi bi-clock-history"></i></span>
+                <div>
+                    <div class="summary-value">{page.averageStay}</div>
+                    <div class="summary-label">Permanencia promedio</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-end gap-2 mb-3">
+        <a class="btn btn-gold" href="{page.historyPdfHref}">
+            <i class="bi bi-file-earmark-pdf me-1"></i> Descargar historial (PDF)
+        </a>
+        <a class="btn btn-outline-navy" href="{page.occupancyPdfHref}">
+            <i class="bi bi-file-earmark-pdf me-1"></i> Ocupación por zona (PDF)
+        </a>
+    </div>
+
+    <div class="app-card table-card">
+        <div class="table-responsive">
+            <table class="table app-table align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Placa</th>
+                    <th>Propietario</th>
+                    <th>Zona</th>
+                    <th>Entrada</th>
+                    <th>Salida</th>
+                    <th>Permanencia</th>
+                    <th>Estado</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#for r in page.rows}
+                <tr>
+                    <td class="plate-cell">{r.plate}</td>
+                    <td>{r.ownerName}</td>
+                    <td>{r.zoneName}</td>
+                    <td>{r.entryTime}</td>
+                    <td>{r.exitTime}</td>
+                    <td>{r.stay}</td>
+                    <td><span class="rec-pill {r.statusClass}">{r.statusLabel}</span></td>
+                </tr>
+                {#else}
+                <tr>
+                    <td colspan="7" class="empty-state">
+                        <i class="bi bi-inbox fs-2 d-block mb-1"></i>
+                        No hay registros entre {page.fromDate} y {page.toDate}. Prueba con otro rango de fechas o con otra zona.
+                    </td>
+                </tr>
+                {/for}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-footer d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <small class="text-muted-app">Mostrando {page.shownCount} de {page.totalRecords} registros</small>
+            {#if page.totalPages > 1}
+            <nav aria-label="Paginación">
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item{#if !page.previousHref} disabled{/if}">
+                        <a class="page-link" href="{page.previousHref ?: '#'}" aria-label="Anterior">&laquo;</a>
+                    </li>
+                    {#for p in page.pages}
+                    <li class="page-item{#if p.current} active{/if}"><a class="page-link" href="{p.href}">{p.number}</a></li>
+                    {/for}
+                    <li class="page-item{#if !page.nextHref} disabled{/if}">
+                        <a class="page-link" href="{page.nextHref ?: '#'}" aria-label="Siguiente">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+            {/if}
+        </div>
+    </div>
+</div>
+{/include}

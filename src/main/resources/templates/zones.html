@@ -1,0 +1,141 @@
+{#include base active='zones'}
+{#title}Zonas{/title}
+
+{#head}
+<style>
+    /* Zona cerrada: se atenúan los datos, pero el interruptor y las acciones siguen visibles */
+    .zone-closed td:not(.zone-state):not(.zone-actions) { opacity: 0.6; }
+</style>
+{/head}
+
+<div class="container app-container page-container">
+    <header class="page-header d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3">
+            <h1 class="mb-0">Zonas del parqueadero</h1>
+            <span class="count-pill">{page.totalZones} {page.totalLabel}</span>
+        </div>
+        <a class="btn btn-navy" href="/zones">
+            <i class="bi bi-plus-lg me-1"></i> Nueva zona
+        </a>
+    </header>
+
+    {#if page.alert}
+        {#include partials/alert.html alert=page.alert /}
+    {/if}
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-8">
+            <div class="app-card table-card">
+                <div class="table-responsive">
+                    <table class="table app-table align-middle mb-0">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th class="text-end">Capacidad</th>
+                            <th class="text-end">Ocupados</th>
+                            <th>Estado</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {#for r in page.rows}
+                        <tr class="{#if !r.active}zone-closed{/if}{#if r.id == page.form.id} table-active{/if}">
+                            <td class="fw-semibold">{r.name}</td>
+                            <td><i class="bi {r.vehicleIcon} me-1"></i>{r.vehicleTypeLabel}</td>
+                            <td class="text-end">{r.capacity}</td>
+                            <td class="text-end">{r.occupied}</td>
+                            <td class="zone-state">
+                                <form method="post" action="/zones/{r.id}/active" class="d-inline">
+                                    <input type="hidden" name="active" value="{r.toggleTo}">
+                                    <div class="form-check form-switch mb-0">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                               id="active-{r.id}" {#if r.active}checked{/if}
+                                               onchange="this.form.submit()"
+                                               aria-label="Abrir o cerrar {r.name}">
+                                        <label class="form-check-label" for="active-{r.id}">{r.statusLabel}</label>
+                                    </div>
+                                    <noscript><button type="submit" class="btn btn-sm btn-ghost mt-1">Cambiar</button></noscript>
+                                </form>
+                            </td>
+                            <td class="text-end zone-actions">
+                                <a href="{r.editHref}" class="btn btn-sm btn-outline-secondary"
+                                   title="Editar {r.name}" aria-label="Editar {r.name}">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" disabled
+                                        title="Eliminar zonas no está disponible" aria-label="Eliminar no disponible">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {#else}
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <i class="bi bi-inbox fs-2 d-block mb-1"></i>
+                                Aún no hay zonas. Crea la primera con el formulario.
+                            </td>
+                        </tr>
+                        {/for}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <small class="text-muted-app">Ocupados cuenta los vehículos que están adentro ahora, también en zonas cerradas.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <form class="app-card form-card side-panel" method="post" action="{page.formAction}" id="zoneForm">
+                <h2 class="card-title-app">{page.formTitle}</h2>
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                           value="{page.form.name}" maxlength="60" placeholder="Zona Posgrados"
+                           required{#if !page.editing} autofocus{/if}>
+                </div>
+
+                <div class="mb-3">
+                    <label for="vehicleType" class="form-label">Tipo de vehículo</label>
+                    <select class="form-select" id="vehicleType" name="vehicleType" required>
+                        <option value="">Selecciona...</option>
+                        {#for o in page.vehicleTypes}
+                        <option value="{o.value}" {#if o.value == page.form.vehicleType}selected{/if}>{o.label}</option>
+                        {/for}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="capacity" class="form-label">Capacidad</label>
+                    <input type="number" class="form-control" id="capacity" name="capacity"
+                           value="{page.form.capacity}" min="1" step="1" placeholder="20" required>
+                    <div class="form-text">Debe ser mayor que 0</div>
+                </div>
+
+                {#if page.editing}
+                <p class="form-text mb-0">
+                    Para abrir o cerrar la zona usa el interruptor de la tabla.
+                </p>
+                {#else}
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="active" name="active"
+                           {#if page.form.active}checked{/if}>
+                    <label class="form-check-label" for="active">Zona activa</label>
+                </div>
+                {/if}
+
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-navy flex-fill">
+                        <i class="bi bi-check-lg me-1"></i> {page.submitLabel}
+                    </button>
+                    {#if page.editing}
+                    <a href="/zones" class="btn btn-ghost">Cancelar</a>
+                    {/if}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{/include}
