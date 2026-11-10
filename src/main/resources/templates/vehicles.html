@@ -1,0 +1,149 @@
+{#include base active='vehicles'}
+{#title}Vehículos{/title}
+
+<div class="container app-container page-container">
+    <header class="page-header d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3">
+            <h1 class="mb-0">Vehículos registrados</h1>
+            <span class="count-pill">{page.totalVehicles} {page.totalLabel}</span>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <form method="get" action="/vehicles" class="d-flex gap-2">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control plate-input" name="plate" value="{page.filterPlate}"
+                           placeholder="Buscar por placa..." autocomplete="off" aria-label="Buscar por placa">
+                </div>
+                <button type="submit" class="btn btn-navy">Buscar</button>
+                {#if page.filterPlate}
+                <a href="/vehicles" class="btn btn-ghost" title="Quitar búsqueda"><i class="bi bi-x-lg"></i></a>
+                {/if}
+            </form>
+            <a class="btn btn-navy" href="/vehicles">
+                <i class="bi bi-plus-lg me-1"></i> Nuevo vehículo
+            </a>
+        </div>
+    </header>
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-8">
+            <div class="app-card table-card">
+                <div class="table-responsive">
+                    <table class="table app-table align-middle mb-0">
+                        <thead>
+                        <tr>
+                            <th>Placa</th>
+                            <th>Tipo</th>
+                            <th>Propietario</th>
+                            <th>Rol</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {#for r in page.rows}
+                        <tr{#if r.id == page.form.id} class="table-active"{/if}>
+                            <td class="plate-cell">{r.plate}</td>
+                            <td><i class="bi {r.vehicleIcon} me-1"></i>{r.vehicleTypeLabel}</td>
+                            <td>{r.ownerName}</td>
+                            <td><span class="role-pill {r.ownerTypeClass}">{r.ownerTypeLabel}</span></td>
+                            <td class="text-end">
+                                <a href="{r.editHref}" class="btn btn-sm btn-outline-secondary"
+                                   title="Editar {r.plate}" aria-label="Editar {r.plate}">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {#else}
+                        <tr>
+                            <td colspan="5" class="empty-state">
+                                <i class="bi bi-inbox fs-2 d-block mb-1"></i>
+                                {#if page.filterPlate}
+                                No hay vehículos con esa placa. Revisa la búsqueda o regístralo con el formulario.
+                                {#else}
+                                Aún no hay vehículos registrados. Usa el formulario para agregar el primero.
+                                {/if}
+                            </td>
+                        </tr>
+                        {/for}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-footer d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <small class="text-muted-app">Mostrando {page.shownCount} de {page.filteredCount} vehículos</small>
+                    {#if page.totalPages > 1}
+                    <nav aria-label="Paginación">
+                        <ul class="pagination pagination-sm mb-0">
+                            <li class="page-item{#if !page.previousHref} disabled{/if}">
+                                <a class="page-link" href="{page.previousHref ?: '#'}" aria-label="Anterior">&laquo;</a>
+                            </li>
+                            {#for p in page.pages}
+                            <li class="page-item{#if p.current} active{/if}"><a class="page-link" href="{p.href}">{p.number}</a></li>
+                            {/for}
+                            <li class="page-item{#if !page.nextHref} disabled{/if}">
+                                <a class="page-link" href="{page.nextHref ?: '#'}" aria-label="Siguiente">&raquo;</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    {/if}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="side-panel">
+                {#if page.alert}
+                    {#include partials/alert.html alert=page.alert /}
+                {/if}
+
+                <form class="app-card form-card" method="post" action="{page.formAction}" id="vehicleForm">
+                    <h2 class="card-title-app">{page.formTitle}</h2>
+
+                    <div class="mb-3">
+                        <label for="plate" class="form-label">Placa</label>
+                        <input type="text" class="form-control plate-input" id="plate" name="plate"
+                               value="{page.form.plate}" maxlength="10" placeholder="ABC123"
+                               autocomplete="off" required{#if !page.editing} autofocus{/if}>
+                        <div class="form-text">Entre 5 y 7 letras o números</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="vehicleType" class="form-label">Tipo de vehículo</label>
+                        <select class="form-select" id="vehicleType" name="vehicleType" required>
+                            <option value="">Selecciona...</option>
+                            {#for o in page.vehicleTypes}
+                            <option value="{o.value}" {#if o.value == page.form.vehicleType}selected{/if}>{o.label}</option>
+                            {/for}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ownerName" class="form-label">Nombre del propietario</label>
+                        <input type="text" class="form-control" id="ownerName" name="ownerName"
+                               value="{page.form.ownerName}" maxlength="100" placeholder="Nombre completo" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ownerType" class="form-label">Tipo de propietario</label>
+                        <select class="form-select" id="ownerType" name="ownerType" required>
+                            <option value="">Selecciona...</option>
+                            {#for o in page.ownerTypes}
+                            <option value="{o.value}" {#if o.value == page.form.ownerType}selected{/if}>{o.label}</option>
+                            {/for}
+                        </select>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-navy flex-fill">
+                            <i class="bi bi-check-lg me-1"></i> {page.submitLabel}
+                        </button>
+                        {#if page.editing}
+                        <a href="/vehicles" class="btn btn-ghost">Cancelar</a>
+                        {/if}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/include}
