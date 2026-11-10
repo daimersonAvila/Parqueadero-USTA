@@ -1,0 +1,6 @@
+{! Alerta reutilizable. Uso: {#include partials/alert.html alert=page.alert /} !}
+<div class="alert alert-{alert.type} alert-dismissible app-alert d-flex align-items-center gap-2" role="alert">
+    <i class="bi bi-{alert.icon} fs-5"></i>
+    <div>{alert.message}</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+</div>
