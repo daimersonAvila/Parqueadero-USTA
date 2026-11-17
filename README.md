@@ -46,6 +46,10 @@ Convención: los identificadores van en inglés; los comentarios y los mensajes 
    ```
 4. Abre http://localhost:8080 en el navegador.
 
+   Si todo salió bien, verás la pantalla de disponibilidad con los cupos de cada zona:
+
+   ![Aplicación en ejecución](docs/capturas/01-disponibilidad.jpg)
+
 La base de datos `parqueadero` se crea sola la primera vez y las tablas se actualizan automáticamente. Al arrancar, el `DataSeeder` carga datos de ejemplo (4 zonas, vehículos y registros) solo si la base está vacía, así que reiniciar no duplica nada.
 
 La conexión usa el usuario `root` sin contraseña, que es la configuración por defecto de XAMPP. Está en `src/main/resources/application.properties`.
@@ -61,6 +65,42 @@ La conexión usa el usuario `root` sin contraseña, que es la configuración por
 | `/zones` | Zonas | Crear, editar, abrir y cerrar zonas |
 | `/vehicles` | Vehículos | Registrar, editar y buscar vehículos por placa |
 
+### Disponibilidad (`/`)
+
+Pantalla principal. Muestra el total de cupos libres, una tarjeta por zona con su barra de ocupación y su estado (Disponible, Pocos cupos o Llena), y el botón para descargar el PDF de ocupación.
+
+![Pantalla de disponibilidad](docs/capturas/01-disponibilidad.jpg)
+
+### Registrar entrada (`/entry`)
+
+El vigilante escribe la placa y elige la zona. Si la placa todavía no existe, activa **Vehículo nuevo** y completa los datos del propietario en el mismo paso. A la derecha se ven los cupos de la zona seleccionada.
+
+![Pantalla de registrar entrada](docs/capturas/02-registrar-entrada.jpg)
+
+### Vehículos adentro (`/inside`)
+
+Lista los vehículos que están en el parqueadero, con su zona, hora de entrada y permanencia. Se puede buscar por placa o zona, descargar el PDF y registrar la salida con un clic.
+
+![Pantalla de vehículos adentro](docs/capturas/03-vehiculos-adentro.jpg)
+
+### Historial y reportes (`/history`)
+
+Consulta de registros por rango de fechas y zona (por defecto, los últimos 7 días), con tres datos de resumen (registros, vehículos adentro y permanencia promedio) y los botones de descarga de PDF.
+
+![Pantalla de historial y reportes](docs/capturas/04-historial.jpg)
+
+### Zonas (`/zones`)
+
+Tabla con la capacidad y los vehículos ocupados de cada zona. El interruptor abre o cierra la zona; el lápiz la edita en el formulario de la derecha y el formulario también sirve para crear zonas nuevas.
+
+![Pantalla de zonas](docs/capturas/05-zonas.jpg)
+
+### Vehículos (`/vehicles`)
+
+Vehículos registrados con búsqueda por placa y paginación. El formulario de la derecha permite registrar uno nuevo o editar el seleccionado con el lápiz.
+
+![Pantalla de vehículos](docs/capturas/06-vehiculos.jpg)
+
 ### Reportes en PDF
 
 | Ruta | Contenido |
@@ -68,6 +108,18 @@ La conexión usa el usuario `root` sin contraseña, que es la configuración por
 | `/reports/occupancy` | Ocupación por zona |
 | `/reports/inside` | Vehículos que están adentro (acepta `plate` y `zoneId`) |
 | `/reports/history` | Historial entre dos fechas (`from`, `to` en formato `yyyy-MM-dd`, y `zoneId` opcional). Si no se envían fechas, usa los últimos 7 días |
+
+**Ocupación por zona**
+
+![PDF de ocupación por zona](docs/capturas/07-pdf-ocupacion.jpg)
+
+**Vehículos dentro del parqueadero**
+
+![PDF de vehículos adentro](docs/capturas/08-pdf-vehiculos-adentro.jpg)
+
+**Historial de entradas y salidas**
+
+![PDF del historial](docs/capturas/09-pdf-historial.jpg)
 
 ## Reglas de negocio
 
@@ -120,7 +172,11 @@ Con la aplicación encendida:
 - Swagger UI: http://localhost:8080/q/swagger-ui
 - Especificación OpenAPI: http://localhost:8080/q/openapi
 
-Las rutas aparecen agrupadas por pantalla (Vehículos, Zonas, Historial, Reportes, etc.).
+Las rutas aparecen agrupadas por pantalla: Disponibilidad, Entradas, Vehículos adentro, Historial, Zonas, Vehículos y Reportes.
+
+![Swagger UI: Entradas, Historial y Reportes](docs/capturas/10-swagger-1.jpg)
+
+![Swagger UI: Vehículos, Vehículos adentro y Zonas](docs/capturas/11-swagger-2.jpg)
 
 ## Base de datos
 
